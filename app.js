@@ -1,5 +1,5 @@
 import express from 'express'
-import Pusher from 'pusher'
+import path from 'path'
 import { connectDB } from './src/models/connection'
 import routerUser from './src/routers/user'
 import routerRoom from './src/routers/room'
@@ -10,15 +10,9 @@ const port = 3000
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static('./src/views/'))
+app.use(express.static(path.join(__dirname, 'public/html/')));
 
-const pusher = new Pusher({
-  appId: "1403607",
-  key: "a2bab2bde9284fa76227",
-  secret: "3db71a12ee22c2de9d66",
-  cluster: "ap1",
-  useTLS: true
-});
+
 
 app.use('/',routerMess)
 app.use('/',routerUser)
