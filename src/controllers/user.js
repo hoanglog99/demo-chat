@@ -11,8 +11,6 @@ export const loginHTML = (req, res) => {
 export const login = async (req, res) => {
     const { account, password } = req.body
     const user = await users.findOne({ account: account })
-    console.log(user)
-    console.log(password);
     if (!user || user.password != password) {
         res.status('400').send('sai tài khoản hoặc mật khẩu!')
     } else {
